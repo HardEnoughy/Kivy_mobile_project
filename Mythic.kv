@@ -1,0 +1,47 @@
+#:kivy 2.2.1
+BoxLayoutExample:
+<BoxLayoutExample>:
+    orientation: "vertical"
+
+    spacing: "20dp"
+
+    BoxLayout:
+        Slider:
+            id: chaos_slider
+            min: 1
+            max: 9
+            step: 1
+        
+        Label:
+            text: str(chaos_slider.value)
+    BoxLayout:
+        orientation: "horizontal"
+        BoxLayout:
+            orientation: "vertical"
+
+            BoxLayout:
+                Button:
+                    text: "Determine difficulty"
+                    on_press: root.determine_diff(skill_roll.text)
+                Button:
+                    text: "Or write down difficulty"
+                    on_press: root.get_user_diff()
+            TextInput:
+                id: skill_roll
+                text: "0"
+
+        Button:
+            text: "Roll for question"
+            size_hint: .5, 1
+            on_press: root.determine_answer()
+        
+        Button:
+            text: "New scene check"
+            size_hint: .5, 1
+            on_press: root.new_scene_chaos_roll()
+    
+    Label:
+        id: result_text
+        text: "Here would be results for roll"
+        size_hint: .5, 1
+        pos_hint: {"center_x": .5}
